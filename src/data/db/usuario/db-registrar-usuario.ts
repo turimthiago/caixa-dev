@@ -1,5 +1,8 @@
 import { Usuario } from "../../../domain/models/usuario";
-import { RegistrarUsuario } from "../../../domain/usescases/registrar-usuario";
+import {
+  RegistrarUsuario,
+  UsuarioModel,
+} from "../../../domain/usescases/registrar-usuario";
 import { RegistrarUsuarioRepository } from "../../protocols";
 
 export class DbRegistrarUsuario implements RegistrarUsuario {
@@ -9,7 +12,7 @@ export class DbRegistrarUsuario implements RegistrarUsuario {
     this.registrarUsuarioRepository = registrarUsuarioRepository;
   }
 
-  async registrar(usuario: Usuario): Promise<Usuario> {
+  async registrar(usuario: UsuarioModel): Promise<Usuario> {
     return await this.registrarUsuarioRepository.registrar(usuario);
   }
 }
