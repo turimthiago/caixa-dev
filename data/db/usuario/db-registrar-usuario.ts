@@ -5,7 +5,11 @@ import { RegistrarUsuarioRepository } from "../../protocols";
 export class DbRegistrarUsuario implements RegistrarUsuario {
   private readonly registrarUsuarioRepository: RegistrarUsuarioRepository;
 
+  constructor(registrarUsuarioRepository: RegistrarUsuarioRepository) {
+    this.registrarUsuarioRepository = registrarUsuarioRepository;
+  }
+
   async registrar(usuario: Usuario): Promise<Usuario> {
-    throw new Error("Method not implemented.");
+    return await this.registrarUsuarioRepository.registrar(usuario);
   }
 }
