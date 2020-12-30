@@ -4,6 +4,7 @@ import {
   UsuarioModel,
 } from "../../../domain/usescases/registrar-usuario";
 import { RegistrarUsuarioRepository } from "../../protocols";
+import bcrypt from "bcrypt";
 
 export class DbRegistrarUsuario implements RegistrarUsuario {
   private readonly registrarUsuarioRepository: RegistrarUsuarioRepository;
@@ -13,6 +14,9 @@ export class DbRegistrarUsuario implements RegistrarUsuario {
   }
 
   async registrar(usuario: UsuarioModel): Promise<Usuario> {
-    return await this.registrarUsuarioRepository.registrar(usuario);
+    const hashedPassword = await bcrypt.hash(usuario.password, 12);
+    return await this.registrarUsuarioRepository.registrar(
+      Object.assign({}, usuario, { password: hashedPassword })
+    );
   }
 }
