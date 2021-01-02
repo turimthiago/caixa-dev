@@ -19,7 +19,7 @@ export class LoginController implements Controller {
       if (!accessToken) return response.status(401).json({});
       return httpResponse.status(200).json({ accessToken });
     } catch (error) {
-      return httpResponse.status(500).json({});
+      return httpResponse.status(500).json({ erro: error.message });
     }
   }
 }

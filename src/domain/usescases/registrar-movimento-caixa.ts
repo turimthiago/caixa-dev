@@ -5,6 +5,7 @@ export interface RegistrarMovimentoModel {
   data: Date;
   idCategoria: string;
   tipo: string;
+  valor: VisualViewport;
 }
 
 export interface RegistrarMovimentoCaixa {

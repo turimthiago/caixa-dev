@@ -15,7 +15,7 @@ export class SignUpController implements Controller {
       });
       return response.status(200).json(UsuarioViewModel.map(usuario));
     } catch (error) {
-      return response.status(500).json({});
+      return response.status(500).json({ erro: error.message });
     }
   }
 }

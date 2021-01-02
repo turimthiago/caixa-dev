@@ -15,7 +15,7 @@ export class RegistrarCategoriController implements Controller {
       const categoria = await this.registrarCategoria.registrar({ nome });
       return httpResponse.status(200).json(categoria);
     } catch (error) {
-      return httpResponse.status(500).json({});
+      return httpResponse.status(500).json({ erro: error.message });
     }
   }
 }
