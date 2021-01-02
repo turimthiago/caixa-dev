@@ -1,5 +1,3 @@
-import { UsuarioModel } from "./registrar-usuario";
-
 export interface AutenticacaoModel {
   email: string;
   password: string;

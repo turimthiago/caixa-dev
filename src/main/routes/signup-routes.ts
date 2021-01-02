@@ -1,12 +1,15 @@
 import { Router } from "express";
+import { DdAutenticacao } from "../../data/db/autenticacao/db-autenticacao";
 import { DbRegistrarUsuario } from "../../data/db/usuario/db-registrar-usuario";
 import { BcryptAdapter } from "../../infra/criptografia/bcrypt-adapter";
 import { UsuarioMongoRepository } from "../../infra/usuario-repository/usuario-repository";
+import { LoginController } from "../../presentation/controllers/login-controller";
 import { SignUpController } from "../../presentation/controllers/signup-controller";
 import { Controller } from "../../presentation/protocols/controller";
 
 export default (router: Router): void => {
   router.post("/signup", buildRoute(makeSignUpController()));
+  router.post("/login", buildRoute(makeLoginController()));
 };
 
 const buildRoute = (controller) => {
@@ -23,6 +26,15 @@ const makeSignUpController = (): Controller => {
     hasher
   );
   const controller = new SignUpController(dbRegistrarUsuario);
+
+  return controller;
+};
+
+const makeLoginController = (): Controller => {
+  const usuarioMongoRepository = new UsuarioMongoRepository();
+  const hasher = new BcryptAdapter(12);
+  const dbAutenticacao = new DdAutenticacao(usuarioMongoRepository, hasher);
+  const controller = new LoginController(dbAutenticacao);
 
   return controller;
 };
