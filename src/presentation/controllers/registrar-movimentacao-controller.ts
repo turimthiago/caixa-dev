@@ -17,9 +17,15 @@ export class RegistrarMovimentacaoController implements Controller {
        // "5ff0b02e3113420e6d7f4e7a"
 
       if (!idUsuario) throw new ParamError("Identificador do Usuário");
-      if (idCategoria) throw new ParamError("Categoria");
-      if (data) throw new ParamError("Data");
-      if (tipo) throw new ParamError("Tipo de Movimentação");
+      if (!idCategoria) throw new ParamError("Categoria");
+      if (!data) throw new ParamError("Data");
+      if (!tipo) throw new ParamError("Tipo de Movimentação");
+      console.log({
+        idUsuario,
+        data,
+        idCategoria,
+        tipo,
+      });
 
       const movimentacao = await this.registrarMovimentacao.registrarMovimento({
         idUsuario,
