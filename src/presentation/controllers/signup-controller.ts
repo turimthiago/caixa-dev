@@ -3,7 +3,7 @@ import { RegistrarUsuario } from "../../domain/usescases/registrar-usuario";
 import { Controller } from "../protocols/controller";
 import { UsuarioViewModel } from "../view-models/usuario";
 
-export class RegistrarUsuarioController implements Controller {
+export class SignUpController implements Controller {
   constructor(private readonly registrarUsuario: RegistrarUsuario) {}
 
   async handle(httpRequest: Request, response: Response): Promise<Response> {

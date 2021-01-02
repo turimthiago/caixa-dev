@@ -1,10 +1,10 @@
 import { Usuario } from "../models";
 
-export interface UsuarioModel {
+export interface RegistrarUsuarioModel {
   email: string;
   password: string;
 }
 
 export interface RegistrarUsuario {
-  registrar(usuario: UsuarioModel): Promise<Usuario>;
+  registrar(registrarUsuario: RegistrarUsuarioModel): Promise<Usuario>;
 }

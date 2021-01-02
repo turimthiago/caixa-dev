@@ -1,22 +1,27 @@
 import { Usuario } from "../../../domain/models/usuario";
 import {
   RegistrarUsuario,
-  UsuarioModel,
+  RegistrarUsuarioModel,
 } from "../../../domain/usescases/registrar-usuario";
 import { RegistrarUsuarioRepository } from "../../protocols";
 import bcrypt from "bcrypt";
+import { Hasher } from "../../criptografia/hasher";
 
 export class DbRegistrarUsuario implements RegistrarUsuario {
-  private readonly registrarUsuarioRepository: RegistrarUsuarioRepository;
+  constructor(
+    private readonly registrarUsuarioRepository: RegistrarUsuarioRepository,
+    private readonly haser: Hasher
+  ) {}
 
-  constructor(registrarUsuarioRepository: RegistrarUsuarioRepository) {
-    this.registrarUsuarioRepository = registrarUsuarioRepository;
-  }
-
-  async registrar(usuario: UsuarioModel): Promise<Usuario> {
-    const hashedPassword = await bcrypt.hash(usuario.password, 12);
-    return await this.registrarUsuarioRepository.registrar(
-      Object.assign({}, usuario, { password: hashedPassword })
-    );
+  async registrar(usuario: RegistrarUsuarioModel): Promise<Usuario> {
+    const hashedPassword = await this.haser.hash(usuario.password);
+    const n = { email: usuario.email, password: hashedPassword };
+    return await this.registrarUsuarioRepository.registrar(n);
   }
 }
+
+//{ email: 'any_email', password: 'hashed_password' }
+//{"email": "any_email", "password": "hashed_password"}
+
+//{ email: 'any_email', password: 'hashed_password' }
+//{"email": "any_email", "password": "hashed_password"}

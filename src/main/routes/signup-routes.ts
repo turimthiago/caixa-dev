@@ -1,7 +1,8 @@
 import { Router } from "express";
 import { DbRegistrarUsuario } from "../../data/db/usuario/db-registrar-usuario";
+import { BcryptAdapter } from "../../infra/criptografia/bcrypt-adapter";
 import { UsuarioMongoRepository } from "../../infra/usuario-repository/usuario-repository";
-import { RegistrarUsuarioController } from "../../presentation/controllers/registrar-usuario-controller";
+import { SignUpController } from "../../presentation/controllers/signup-controller";
 import { Controller } from "../../presentation/protocols/controller";
 
 export default (router: Router): void => {
@@ -15,10 +16,13 @@ const buildRoute = (controller) => {
 };
 
 const makeSignUpController = (): Controller => {
-  console.log("makeSignUpController");
   const usuarioMongoRepository = new UsuarioMongoRepository();
-  const dbRegistrarUsuario = new DbRegistrarUsuario(usuarioMongoRepository);
-  const controller = new RegistrarUsuarioController(dbRegistrarUsuario);
+  const hasher = new BcryptAdapter(12);
+  const dbRegistrarUsuario = new DbRegistrarUsuario(
+    usuarioMongoRepository,
+    hasher
+  );
+  const controller = new SignUpController(dbRegistrarUsuario);
 
   return controller;
 };
