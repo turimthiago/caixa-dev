@@ -4,7 +4,6 @@ import {
   RegistrarUsuarioModel,
 } from "../../../domain/usescases/registrar-usuario";
 import { RegistrarUsuarioRepository } from "../../protocols";
-import bcrypt from "bcrypt";
 import { Hasher } from "../../criptografia/hasher";
 
 export class DbRegistrarUsuario implements RegistrarUsuario {
