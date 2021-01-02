@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { DbRegistrarCategoria } from "../../data/db/categoria/db-registrar-categoria";
 import { CategoriaMongoRepository } from "../../infra/categoria-repository/categoria-repository";
-import { RegistrarCategoriController } from "../../presentation/controllers/categoria-controller";
+import { RegistrarCategoriController } from "../../presentation/controllers/registrar-categoria-controller";
 import { Controller } from "../../presentation/protocols/controller";
 
 export default (router: Router): void => {
