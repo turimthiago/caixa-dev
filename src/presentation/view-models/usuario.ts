@@ -1,8 +1,7 @@
 import { Usuario } from "../../domain/models";
-import { UsuarioModel } from "../../domain/usescases/registrar-usuario";
 
 export class UsuarioViewModel {
-  id: number;
+  id: string;
   email: string;
 
   static map(entity: Usuario): UsuarioViewModel {

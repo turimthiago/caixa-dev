@@ -3,11 +3,18 @@ import {
   RegistrarCategoria,
   RegistrarCategoriaModel,
 } from "../../../domain/usescases/registrar-categoria";
+import { RegistrarCategoriRepository } from "../../protocols/registrar-categoria-repository";
 
-export class DbResitrarCategoria implements RegistrarCategoria {
-    
+export class DbRegistrarCategoria implements RegistrarCategoria {
+  constructor(
+    private readonly registrarCategoriaRepository: RegistrarCategoriRepository
+  ) {}
 
-  async registrar(registrarUsuario: RegistrarCategoriaModel): Promise<Categoria> {
-    throw new Error("Method not implemented.");
+  async registrar(
+    registrarCategoria: RegistrarCategoriaModel
+  ): Promise<Categoria> {
+    return await this.registrarCategoriaRepository.registrarCategoria(
+      registrarCategoria
+    );
   }
 }

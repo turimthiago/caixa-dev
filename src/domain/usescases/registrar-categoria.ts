@@ -5,5 +5,5 @@ export interface RegistrarCategoriaModel {
 }
 
 export interface RegistrarCategoria {
-  registrar(registrarUsuario: RegistrarCategoriaModel): Promise<Categoria>;
+  registrar(registrarCategoria: RegistrarCategoriaModel): Promise<Categoria>;
 }

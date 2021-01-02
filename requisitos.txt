@@ -50,3 +50,9 @@ Seria legal se você conseguisse:
 Sinta-se à vontade para definir qual framework, libs ou database irá utilizar e coloque abaixo o link do resultado final em um repositorio (github, gitlab ou bitbucket).
 
 ATENÇÃO: Só clique em finalizar o teste após colocar o link do seu projeto aqui embaixo. Você pode entrar e sair do teste quantas vezes quiser, mas após clicar em Finalizar, não poderá mais entrar.
+
+
+X Criação de Usuário;
+X Autenticação com token de acesso;
+X Cadastro de Categorias;
+- Registro de Movimentação de Caixa;
