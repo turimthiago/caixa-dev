@@ -2,10 +2,11 @@ import { Movimentacao } from "../models";
 
 export interface RegistrarMovimentoModel {
   idUsuario: string;
-  data: Date;
+  data: string;
   idCategoria: string;
   tipo: string;
-  valor: VisualViewport;
+  valor: string;
+  descricao: string;
 }
 
 export interface RegistrarMovimentoCaixa {

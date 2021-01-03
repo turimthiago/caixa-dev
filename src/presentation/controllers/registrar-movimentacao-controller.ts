@@ -13,13 +13,21 @@ export class RegistrarMovimentacaoController implements Controller {
     httpResponse: Response
   ): Promise<Response> {
     try {
-      const { idUsuario, idCategoria, data, tipo, valor } = httpRequest.body;
+      const {
+        idUsuario,
+        idCategoria,
+        data,
+        tipo,
+        valor,
+        descricao,
+      } = httpRequest.body;
 
       if (!idUsuario) throw new ParamError("Identificador do Usuário");
       if (!idCategoria) throw new ParamError("Categoria");
       if (!data) throw new ParamError("Data");
       if (!tipo) throw new ParamError("Tipo de Movimentação");
       if (!valor) throw new ParamError("valor");
+      if (!descricao) throw new ParamError("descrição");
 
       const movimentacao = await this.registrarMovimentacao.registrarMovimento({
         idUsuario,
@@ -27,6 +35,7 @@ export class RegistrarMovimentacaoController implements Controller {
         idCategoria,
         tipo,
         valor,
+        descricao,
       });
 
       return httpResponse.status(200).json(movimentacao);

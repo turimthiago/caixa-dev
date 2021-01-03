@@ -9,7 +9,9 @@ export class CategoriaMongoRepository
   implements RegistrarCategoriRepository, BuscarCategoriaPorIdRepository {
   async buscarPorId(id: string): Promise<Categoria> {
     const categoriasCollection = await MongoHelper.getCollection("categorias");
-    return await categoriasCollection.findOne({ _id: new ObjectId(id) });
+    return await MongoHelper.map(
+      await categoriasCollection.findOne({ _id: new ObjectId(id) })
+    );
   }
   async registrarCategoria(
     registrarCategoria: RegistrarCategoriaModel

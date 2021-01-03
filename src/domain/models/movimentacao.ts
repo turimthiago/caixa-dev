@@ -1,15 +1,10 @@
 import { Categoria } from "./categoria";
-import { Usuario } from "./usuario";
-
 export interface Movimentacao {
-  usuario: Usuario;
+  id: number;
+  idUsuario: string;
   data: Date;
   categoria: Categoria;
-  tipo: TipoMovimentacao;
+  tipo: string;
   valor: number;
-}
-
-enum TipoMovimentacao {
-  ENTRADA,
-  SAIDA,
+  descricao: string;
 }

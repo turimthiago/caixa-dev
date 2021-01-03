@@ -13,7 +13,6 @@ export class DdAutenticacao implements Autenticacao {
   ) {}
 
   async autenticar(autenticacao: AutenticacaoModel): Promise<string> {
-    console.log(autenticacao);
     const usuario = await this.buscarUsuarioPorEmailRepository.buscarPorEmail(
       autenticacao.email
     );

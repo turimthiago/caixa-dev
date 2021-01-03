@@ -34,7 +34,11 @@ export class DbRegistrarMovimentacao implements RegistrarMovimentoCaixa {
     }
 
     return await this.registrarMovimentacaoRepository.registrarMovimentacao(
-      registrarMovimentoModel
+      Object.assign({}, registrarMovimentoModel, {
+        data: new Date(registrarMovimentoModel.data),
+        valor: Number(registrarMovimentoModel.valor),
+        categoria
+      })
     );
   }
 }

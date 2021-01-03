@@ -6,7 +6,6 @@ import { DbRegistrarUsuario } from "./db-registrar-usuario";
 
 class RegistrarUsuarioReposityStub implements RegistrarUsuarioRepository {
   registrar(registrarUsuario: RegistrarUsuarioModel): Promise<Usuario> {
-    console.log(registrarUsuario);
     return Promise.resolve({
       id: "any_id",
       email: "any_email",

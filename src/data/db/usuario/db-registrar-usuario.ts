@@ -14,8 +14,9 @@ export class DbRegistrarUsuario implements RegistrarUsuario {
 
   async registrar(usuario: RegistrarUsuarioModel): Promise<Usuario> {
     const hashedPassword = await this.haser.hash(usuario.password);
-    const n = { email: usuario.email, password: hashedPassword };
-    return await this.registrarUsuarioRepository.registrar(n);
+    return await this.registrarUsuarioRepository.registrar(
+      Object.assign({}, usuario, { password: hashedPassword })
+    );
   }
 }
 
