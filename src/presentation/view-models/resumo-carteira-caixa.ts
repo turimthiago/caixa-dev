@@ -1,4 +1,7 @@
+import { TipoDeMovimentacaoInvalidaError } from "../../domain/errors/tipo-movimentacao-invalida-error";
 import { Movimentacao } from "../../domain/models";
+import { TipoMovimentacao } from "../../domain/models/tipo-movimentacao";
+import { ResumoCarteira } from "../../domain/usescases/buscar-resumo-carteira";
 import { CategoriaViewModel } from "./categoria";
 
 interface MovimentacaoViewModel {
@@ -14,18 +17,16 @@ export class ResumoCartiraCaixaViewModel {
   movimentacoes: MovimentacaoViewModel[];
 
   static async map(
-    movimentacoesModel: Movimentacao[]
+    resumo: ResumoCarteira
   ): Promise<ResumoCartiraCaixaViewModel> {
-    const sum = await movimentacoesModel
-      .map((a) => Number(a.valor))
-      .reduce((a, b) => a + b);
-    const movimentacoes = movimentacoesModel.map((item) => ({
+    const movimentacoes = resumo.movimentacoes.map((item) => ({
       data: item.data,
       id: item.id,
       descricao: item.descricao,
       valor: item.valor,
+      tipo: item.tipo,
       categoria: CategoriaViewModel.map(item.categoria),
     }));
-    return { saldoTotal: sum.toFixed(2), movimentacoes };
+    return { saldoTotal: resumo.saldoTotal.toFixed(2), movimentacoes };
   }
 }

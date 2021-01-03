@@ -1,6 +1,6 @@
 import { BuscarListaMovimentacaoRepository } from "../../data/protocols/buscar-lista-movimentacao-repository";
 import { RegistrarMovimentacaoCaixaRepository } from "../../data/protocols/registrar-movimentacao-caixa-repository";
-import { Movimentacao } from "../../domain/models";
+import { Movimentacao, TipoMovimentacao } from "../../domain/models";
 import { RegistrarMovimentoModel } from "../../domain/usescases/registrar-movimento-caixa";
 import { MongoHelper } from "../helpers";
 
@@ -31,6 +31,7 @@ export class MovimentacaoMongoRepository
     const movimentacoesCollection = await MongoHelper.getCollection(
       "movimentacoes"
     );
+
     const result = await movimentacoesCollection.insertOne(
       registrarMovimentacao
     );

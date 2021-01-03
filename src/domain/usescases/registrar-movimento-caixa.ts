@@ -9,6 +9,8 @@ export interface RegistrarMovimentoModel {
   descricao: string;
 }
 
+
+
 export interface RegistrarMovimentoCaixa {
   registrarMovimento(
     registrarMovimentoModel: RegistrarMovimentoModel

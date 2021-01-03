@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { DbBuscarMovimentacaoDiaResumo } from "../../data/db/caixa/db-buscar-movimentacao-dia";
+import { DbBuscarResumoCarteira } from "../../data/db/caixa/db-buscar-resumo-carteira";
 import { DbRegistrarMovimentacao } from "../../data/db/caixa/db-registrar-movimentacao";
 import { CategoriaMongoRepository } from "../../infra/categoria-repository/categoria-repository";
 import { MovimentacaoMongoRepository } from "../../infra/movimentacao-caixa-repository/movimentacao-caixa-repository";
@@ -38,7 +39,7 @@ const makeRegistrarMovimentacao = (): Controller => {
 const makebuscarMovimentacoes = (): Controller => {
   const usuarioMongoRepository = new UsuarioMongoRepository();
   const movimentacaoMongoRepository = new MovimentacaoMongoRepository();
-  const buscarMovimentacaoDiaResumo = new DbBuscarMovimentacaoDiaResumo(
+  const buscarMovimentacaoDiaResumo = new DbBuscarResumoCarteira(
     usuarioMongoRepository,
     movimentacaoMongoRepository
   );

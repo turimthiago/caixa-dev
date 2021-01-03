@@ -1,5 +1,6 @@
 import { CategoriaNaoExisteError } from "../../../domain/errors/categoria-nao-existe-error";
 import { UsuarioNaoExisteError } from "../../../domain/errors/usuario-nao-existe-error";
+import { TipoDeMovimentacaoInvalidaError } from "../../../domain/errors/tipo-movimentacao-invalida-error";
 import { Movimentacao } from "../../../domain/models";
 import {
   RegistrarMovimentoCaixa,
@@ -33,11 +34,18 @@ export class DbRegistrarMovimentacao implements RegistrarMovimentoCaixa {
       throw new CategoriaNaoExisteError();
     }
 
+    if (
+      registrarMovimentoModel.tipo !== "ENTRADA" &&
+      registrarMovimentoModel.tipo !== "SAIDA"
+    ) {
+      throw new TipoDeMovimentacaoInvalidaError();
+    }
+
     return await this.registrarMovimentacaoRepository.registrarMovimentacao(
       Object.assign({}, registrarMovimentoModel, {
         data: new Date(registrarMovimentoModel.data),
         valor: Number(registrarMovimentoModel.valor),
-        categoria
+        categoria,
       })
     );
   }
