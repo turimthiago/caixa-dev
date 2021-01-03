@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, response, Response } from "express";
 import { BuscarCategoriaPorIdRepository } from "../../data/protocols/buscar-categoria-repository";
 import { BuscarMovimentacaoDiaResumo } from "../../domain/usescases/buscar-movimentacao-dia";
 import { Controller } from "../protocols/controller";
@@ -13,16 +13,20 @@ export class BuscarMovimentacaoDataController implements Controller {
     httpRequest: Request,
     httpResponse: Response
   ): Promise<Response> {
-    const data = httpRequest.query.data;
-    const idUsuario = httpRequest.query.idUsuario;
+    try {
+      const data = httpRequest.query.data;
+      const idUsuario = httpRequest.query.idUsuario;
 
-    const movimentacoes = await this.buscarMovimentacaoDiaResumo.buscar(
-      idUsuario as string,
-      data as string
-    );
+      const movimentacoes = await this.buscarMovimentacaoDiaResumo.buscar(
+        idUsuario as string,
+        data as string
+      );
 
-    return httpResponse
-      .status(200)
-      .json(await ResumoCartiraCaixaViewModel.map(movimentacoes));
+      return httpResponse
+        .status(200)
+        .json(await ResumoCartiraCaixaViewModel.map(movimentacoes));
+    } catch (error) {
+      return response.status(500).json({ erro: error.message });
+    }
   }
 }
