@@ -34,16 +34,16 @@ descricao: String
 ]
 }
 O que esperamos e iremos avaliar:
-- Análise dos requisitos
-- Boas práticas de código (clean code)
-- Domínio da linguagem
-- Estrutura, organização, legibilidade e manutenibilidade do código
+- Análise dos requisitos OK
+- Boas práticas de código (clean code) OK
+- Domínio da linguagem Ok 
+- Estrutura, organização, legibilidade e manutenibilidade do código Ok
 - Documentação de como “rodar” seu projeto
 
 Seria legal se você conseguisse:
-- Testes automatizados
+- Testes automatizados OK
 - Documentação de uso da sua API
-- Alguma forma de autenticação para que o dono de um caixa não veja o caixa do outro.
+- Alguma forma de autenticação para que o dono de um caixa não veja o caixa do outro. OK
 - Docker (com docker-compose talvez?)
 - Subir o projeto em alguma infra (now.sh, heroku, aws etc...)
 

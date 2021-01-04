@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { RegistrarCategoria } from "../../domain/usescases";
+import { ParamError } from "../errors/param-error";
 import { Controller } from "../protocols";
 
 export class RegistrarCategoriController implements Controller {
@@ -11,6 +12,8 @@ export class RegistrarCategoriController implements Controller {
   ): Promise<Response> {
     try {
       const { nome } = httpRequest.body;
+
+      if (!nome) throw new ParamError("nome");
 
       const categoria = await this.registrarCategoria.registrar({ nome });
       return httpResponse.status(200).json(categoria);
