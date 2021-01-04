@@ -8,16 +8,11 @@ import {
 } from "../../presentation/controllers";
 import { Controller } from "../../presentation/protocols";
 import env from "../config/env";
+import { RouteHelper } from "../helpers/route-helper";
 
 export default (router: Router): void => {
-  router.post("/signup", buildRoute(makeSignUpController()));
-  router.post("/login", buildRoute(makeLoginController()));
-};
-
-const buildRoute = (controller) => {
-  return (req, res) => {
-    return controller.handle(req, res);
-  };
+  router.post("/signup", RouteHelper.buildRoute(makeSignUpController()));
+  router.post("/login", RouteHelper.buildRoute(makeLoginController()));
 };
 
 const makeSignUpController = (): Controller => {

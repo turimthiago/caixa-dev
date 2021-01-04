@@ -3,15 +3,15 @@ import { DbRegistrarCategoria } from "../../data/usecases";
 import { CategoriaMongoRepository } from "../../infra/db/mongodb";
 import { RegistrarCategoriController } from "../../presentation/controllers";
 import { Controller } from "../../presentation/protocols";
+import { RouteHelper } from "../helpers/route-helper";
+import { autenticationMiddleware } from "../middlewares/aut";
 
 export default (router: Router): void => {
-  router.post("/categorias", buildRoute(makeRegistrarCategoriaController()));
-};
-
-const buildRoute = (controller) => {
-  return (req, res) => {
-    return controller.handle(req, res);
-  };
+  router.post(
+    "/categorias",
+    RouteHelper.buildMiddleware(autenticationMiddleware),
+    RouteHelper.buildRoute(makeRegistrarCategoriaController())
+  );
 };
 
 const makeRegistrarCategoriaController = (): Controller => {

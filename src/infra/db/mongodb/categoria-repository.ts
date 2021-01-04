@@ -20,7 +20,7 @@ export class CategoriaMongoRepository
     registrarCategoria: RegistrarCategoriaModel
   ): Promise<Categoria> {
     const categoriasCollection = await MongoHelper.getCollection("categorias");
-    const result = await categoriasCollection.insertOne(registrarCategoria);
-    return MongoHelper.map(result.ops[0]);
+    const categoria = await categoriasCollection.insertOne(registrarCategoria);
+    return categoria && MongoHelper.map(categoria.ops[0]);
   }
 }

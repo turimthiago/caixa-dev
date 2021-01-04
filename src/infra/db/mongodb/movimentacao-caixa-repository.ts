@@ -25,7 +25,7 @@ export class MovimentacaoMongoRepository
       })
       .toArray();
 
-    return await result.map(MongoHelper.map);
+    return result && await result.map(MongoHelper.map);
   }
 
   async registrarMovimentacao(
@@ -35,6 +35,6 @@ export class MovimentacaoMongoRepository
       "movimentacoes"
     );
     const result = await movimentacoesCollection.insertOne(data);
-    return MongoHelper.map(result.ops[0]);
+    return result && MongoHelper.map(result.ops[0]);
   }
 }

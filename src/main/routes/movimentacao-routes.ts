@@ -13,31 +13,20 @@ import {
   RegistrarMovimentacaoController,
 } from "../../presentation/controllers";
 import { Controller } from "../../presentation/protocols";
+import { RouteHelper } from "../helpers/route-helper";
 import { autenticationMiddleware } from "../middlewares/aut";
 
 export default (router: Router): void => {
   router.post(
     "/movimentacoes",
-    buildMiddleware(autenticationMiddleware),
-    buildRoute(makeRegistrarMovimentacao())
+    RouteHelper.buildMiddleware(autenticationMiddleware),
+    RouteHelper.buildRoute(makeRegistrarMovimentacao())
   );
   router.get(
     "/movimentacoes",
-    buildMiddleware(autenticationMiddleware),
-    buildRoute(makebuscarMovimentacoes())
+    RouteHelper.buildMiddleware(autenticationMiddleware),
+    RouteHelper.buildRoute(makebuscarMovimentacoes())
   );
-};
-
-const buildRoute = (controller) => {
-  return (req, res) => {
-    return controller.handle(req, res);
-  };
-};
-
-const buildMiddleware = (middleware) => {
-  return (req, res, next) => {
-    return middleware.handle(req, res, next);
-  };
 };
 
 const makeRegistrarMovimentacao = (): Controller => {
