@@ -15,7 +15,9 @@ export class UsuarioMongoRepository
     const isPkValid = ObjectId.isValid(id);
     if (!isPkValid) throw new Error("Chave para busca inválida");
     const usuariosCollection = await MongoHelper.getCollection("usuarios");
-    return await usuariosCollection.findOne({ _id: new ObjectId(id) });
+    return MongoHelper.map(
+      await usuariosCollection.findOne({ _id: new ObjectId(id) })
+    );
   }
 
   async buscarPorEmail(email: string): Promise<Usuario> {
