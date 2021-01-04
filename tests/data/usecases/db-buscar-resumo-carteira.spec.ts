@@ -1,11 +1,11 @@
 import {
-  BuscarCategoriaPorIdRepository,
   BuscarListaMovimentacaoRepository,
   BuscarUsuarioPorIdRepository,
 } from "../../../src/data/protocols";
 import { DbBuscarResumoCarteira } from "../../../src/data/usecases";
 import { UsuarioNaoExisteError } from "../../../src/domain/errors";
-import { Categoria, Movimentacao, Usuario } from "../../../src/domain/models";
+import { Movimentacao, Usuario } from "../../../src/domain/models";
+import { fakeMovimentacoes } from "./fake-movimentacoes";
 
 class BuscarUsuarioPorIdRepositoryStub implements BuscarUsuarioPorIdRepository {
   buscarPorId(id: string): Promise<Usuario> {
@@ -20,7 +20,7 @@ class BuscarUsuarioPorIdRepositoryStub implements BuscarUsuarioPorIdRepository {
 class BuscarListaMovimentacaoRepositoryStub
   implements BuscarListaMovimentacaoRepository {
   buscarMovimentacoes(data: Date, idUsuario: string): Promise<Movimentacao[]> {
-    return Promise.resolve([]);
+    return Promise.resolve(fakeMovimentacoes);
   }
 }
 
@@ -54,5 +54,34 @@ describe("DbBuscarResumoCarteira", () => {
 
     await sut.buscar("any_id", new Date());
     expect(buscarPorIdSpy).toHaveBeenCalledWith("any_id");
+  });
+
+  test("deve chamar BuscarListaMovimentacaoRepository.buscarMovimentacoes com parâmetros corretos", async () => {
+    const buscarUsuarioPorIdRepositoryStub = new BuscarUsuarioPorIdRepositoryStub();
+    const buscarListaMovimentacaoRepositoryStub = new BuscarListaMovimentacaoRepositoryStub();
+    const buscarMovimentacoesSpy = jest.spyOn(
+      buscarListaMovimentacaoRepositoryStub,
+      "buscarMovimentacoes"
+    );
+    const sut = new DbBuscarResumoCarteira(
+      buscarUsuarioPorIdRepositoryStub,
+      buscarListaMovimentacaoRepositoryStub
+    );
+
+    const date = new Date();
+    await sut.buscar("any_id", date);
+    expect(buscarMovimentacoesSpy).toHaveBeenCalledWith(date, "any_id");
+  });
+
+  test("deve retornar ResumoCarteira com valores corretos", async () => {
+    const buscarUsuarioPorIdRepositoryStub = new BuscarUsuarioPorIdRepositoryStub();
+    const buscarListaMovimentacaoRepositoryStub = new BuscarListaMovimentacaoRepositoryStub();
+    const sut = new DbBuscarResumoCarteira(
+      buscarUsuarioPorIdRepositoryStub,
+      buscarListaMovimentacaoRepositoryStub
+    );
+
+    const resumo = await sut.buscar("any_id", new Date());
+    expect(resumo.saldoTotal).toEqual(99.9);
   });
 });
