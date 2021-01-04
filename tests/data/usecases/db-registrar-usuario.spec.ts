@@ -3,7 +3,6 @@ import { RegistrarUsuarioRepository } from "../../../src/data/protocols";
 import { DbRegistrarUsuario } from "../../../src/data/usecases";
 import { Usuario } from "../../../src/domain/models";
 import { RegistrarUsuarioModel } from "../../../src/domain/usescases";
-
 class RegistrarUsuarioReposityStub implements RegistrarUsuarioRepository {
   registrar(registrarUsuario: RegistrarUsuarioModel): Promise<Usuario> {
     return Promise.resolve({
@@ -13,7 +12,6 @@ class RegistrarUsuarioReposityStub implements RegistrarUsuarioRepository {
     });
   }
 }
-
 class HahserStub implements Hasher {
   compare(value: string, hash: string): Promise<Boolean> {
     return Promise.resolve(true);
