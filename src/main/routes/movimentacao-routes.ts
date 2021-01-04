@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { DbBuscarMovimentacaoDiaResumo } from "../../data/db/caixa/db-buscar-movimentacao-dia";
 import { DbBuscarResumoCarteira } from "../../data/db/caixa/db-buscar-resumo-carteira";
 import { DbRegistrarMovimentacao } from "../../data/db/caixa/db-registrar-movimentacao";
 import { CategoriaMongoRepository } from "../../infra/categoria-repository/categoria-repository";
@@ -8,15 +7,30 @@ import { UsuarioMongoRepository } from "../../infra/usuario-repository/usuario-r
 import { BuscarMovimentacaoDataController } from "../../presentation/controllers/buscar-lista-movimentacao-data";
 import { RegistrarMovimentacaoController } from "../../presentation/controllers/registrar-movimentacao-controller";
 import { Controller } from "../../presentation/protocols/controller";
+import { autenticationMiddleware } from "../middlewares/aut";
 
 export default (router: Router): void => {
-  router.post("/movimentacoes", buildRoute(makeRegistrarMovimentacao()));
-  router.get("/movimentacoes", buildRoute(makebuscarMovimentacoes()));
+  router.post(
+    "/movimentacoes",
+    buildMiddleware(autenticationMiddleware),
+    buildRoute(makeRegistrarMovimentacao())
+  );
+  router.get(
+    "/movimentacoes",
+    buildMiddleware(autenticationMiddleware),
+    buildRoute(makebuscarMovimentacoes())
+  );
 };
 
 const buildRoute = (controller) => {
   return (req, res) => {
     return controller.handle(req, res);
+  };
+};
+
+const buildMiddleware = (middleware) => {
+  return (req, res, next) => {
+    return middleware.handle(req, res, next);
   };
 };
 

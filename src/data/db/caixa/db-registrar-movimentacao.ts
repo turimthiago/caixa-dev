@@ -9,6 +9,7 @@ import {
 import { BuscarCategoriaPorIdRepository } from "../../protocols/buscar-categoria-repository";
 import { BuscarUsuarioPorIdRepository } from "../../protocols/buscar-usuario-id-repository";
 import { RegistrarMovimentacaoCaixaRepository } from "../../protocols/registrar-movimentacao-caixa-repository";
+import { TipoMovimentacao } from "../../../domain/models/tipo-movimentacao";
 
 export class DbRegistrarMovimentacao implements RegistrarMovimentoCaixa {
   constructor(
@@ -18,35 +19,42 @@ export class DbRegistrarMovimentacao implements RegistrarMovimentoCaixa {
   ) {}
 
   async registrarMovimento(
-    registrarMovimentoModel: RegistrarMovimentoModel
+    data: RegistrarMovimentoModel
   ): Promise<Movimentacao> {
     const usuario = await this.buscarUsuarioPorIdRepository.buscarPorId(
-      registrarMovimentoModel.idUsuario
+      data.usuarioId
     );
     if (!usuario) {
       throw new UsuarioNaoExisteError();
     }
 
     const categoria = await this.buscarCategoriaPorIdRepository.buscarPorId(
-      registrarMovimentoModel.idCategoria
+      data.categoria.id
     );
+
     if (!categoria) {
       throw new CategoriaNaoExisteError();
     }
+    data.categoria = categoria;
 
-    if (
-      registrarMovimentoModel.tipo !== "ENTRADA" &&
-      registrarMovimentoModel.tipo !== "SAIDA"
-    ) {
+    if (data.tipo !== "ENTRADA" && data.tipo !== "SAIDA") {
       throw new TipoDeMovimentacaoInvalidaError();
     }
 
-    return await this.registrarMovimentacaoRepository.registrarMovimentacao(
-      Object.assign({}, registrarMovimentoModel, {
-        data: new Date(registrarMovimentoModel.data),
-        valor: Number(registrarMovimentoModel.valor),
-        categoria,
-      })
+    const result = await this.registrarMovimentacaoRepository.registrarMovimentacao(
+      data
     );
+
+    return Object.assign({}, result, {
+      id: result.id,
+      data: result.data,
+      categoria,
+      tipo:
+        result.tipo == "SAIDA"
+          ? TipoMovimentacao.SAIDA
+          : TipoMovimentacao.ENTRADA,
+      valor: result.valor,
+      descricao: result.descricao,
+    });
   }
 }

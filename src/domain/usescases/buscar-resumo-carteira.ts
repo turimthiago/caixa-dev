@@ -6,5 +6,5 @@ export interface ResumoCarteira {
 }
 
 export interface BuscarResumoCarteira {
-  buscar(idUsuario: string, data: string): Promise<ResumoCarteira>;
+  buscar(usuarioId: string, data: Date): Promise<ResumoCarteira>;
 }

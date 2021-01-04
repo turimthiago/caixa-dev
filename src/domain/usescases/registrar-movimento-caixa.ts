@@ -1,16 +1,12 @@
-import { Movimentacao } from "../models";
-
+import { Categoria, Movimentacao } from "../models";
 export interface RegistrarMovimentoModel {
-  idUsuario: string;
-  data: string;
-  idCategoria: string;
+  usuarioId: string;
+  data: Date;
+  categoria: Categoria;
   tipo: string;
   valor: string;
   descricao: string;
 }
-
-
-
 export interface RegistrarMovimentoCaixa {
   registrarMovimento(
     registrarMovimentoModel: RegistrarMovimentoModel

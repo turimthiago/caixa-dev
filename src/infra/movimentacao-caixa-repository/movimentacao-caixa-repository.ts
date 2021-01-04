@@ -1,6 +1,8 @@
+import { ObjectId } from "mongodb";
+import { MovimentacaoEntity } from "../../data/entities/movimentacao-entity";
 import { BuscarListaMovimentacaoRepository } from "../../data/protocols/buscar-lista-movimentacao-repository";
 import { RegistrarMovimentacaoCaixaRepository } from "../../data/protocols/registrar-movimentacao-caixa-repository";
-import { Movimentacao, TipoMovimentacao } from "../../domain/models";
+import { Movimentacao } from "../../domain/models";
 import { RegistrarMovimentoModel } from "../../domain/usescases/registrar-movimento-caixa";
 import { MongoHelper } from "../helpers";
 
@@ -9,8 +11,8 @@ export class MovimentacaoMongoRepository
     RegistrarMovimentacaoCaixaRepository,
     BuscarListaMovimentacaoRepository {
   async buscarMovimentacoes(
-    data: string,
-    idUsuario: string
+    data: Date,
+    usuarioId: string
   ): Promise<Movimentacao[]> {
     const movimentacoesCollection = await MongoHelper.getCollection(
       "movimentacoes"
@@ -18,23 +20,21 @@ export class MovimentacaoMongoRepository
 
     const result = await movimentacoesCollection
       .find({
-        idUsuario: idUsuario,
-        data: new Date(data),
+        usuarioId,
+        data,
       })
       .toArray();
 
     return await result.map(MongoHelper.map);
   }
+
   async registrarMovimentacao(
-    registrarMovimentacao: RegistrarMovimentoModel
+    data: RegistrarMovimentoModel
   ): Promise<Movimentacao> {
     const movimentacoesCollection = await MongoHelper.getCollection(
       "movimentacoes"
     );
-
-    const result = await movimentacoesCollection.insertOne(
-      registrarMovimentacao
-    );
+    const result = await movimentacoesCollection.insertOne(data);
     return MongoHelper.map(result.ops[0]);
   }
 }

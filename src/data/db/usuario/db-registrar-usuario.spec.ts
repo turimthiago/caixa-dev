@@ -7,9 +7,9 @@ import { DbRegistrarUsuario } from "./db-registrar-usuario";
 class RegistrarUsuarioReposityStub implements RegistrarUsuarioRepository {
   registrar(registrarUsuario: RegistrarUsuarioModel): Promise<Usuario> {
     return Promise.resolve({
-      id: "any_id",
-      email: "any_email",
-      password: "hashed_password",
+      id: "valid_id",
+      email: "valid_email@email.com",
+      password: "valid_hashed_password",
     });
   }
 }
@@ -36,5 +36,26 @@ describe("DbRegistrarUsuario", () => {
       email: "any_email",
       password: "hashed_password",
     });
+  });
+
+  test("Deve retornar um usuário registrado com sucesso", async () => {
+    const repository = new RegistrarUsuarioReposityStub();
+    const hahserStub = new HahserStub();
+    const sut = new DbRegistrarUsuario(repository, hahserStub);
+
+    const fakeUsuarioData = {
+      email: "valid_email@email.com",
+      password: "valid_password",
+    };
+
+    const fakeUsuario = {
+      id: "valid_id",
+      email: "valid_email@email.com",
+      password: "valid_hashed_password",
+    };
+
+    const usuario = await sut.registrar(fakeUsuarioData);
+
+    expect(usuario).toEqual(fakeUsuario);
   });
 });

@@ -1,16 +1,19 @@
 import { UsuarioNaoExisteError } from "../../../domain/errors/usuario-nao-existe-error";
+import { Movimentacao } from "../../../domain/models";
 import { TipoMovimentacao } from "../../../domain/models/tipo-movimentacao";
 import {
   BuscarResumoCarteira,
   ResumoCarteira,
 } from "../../../domain/usescases/buscar-resumo-carteira";
+import { BuscarCategoriaPorIdRepository } from "../../protocols/buscar-categoria-repository";
 import { BuscarListaMovimentacaoRepository } from "../../protocols/buscar-lista-movimentacao-repository";
 import { BuscarUsuarioPorIdRepository } from "../../protocols/buscar-usuario-id-repository";
 
 export class DbBuscarResumoCarteira implements BuscarResumoCarteira {
   constructor(
     private readonly buscarUsuarioPorIdRepository: BuscarUsuarioPorIdRepository,
-    private readonly buscarListaMovimentacaoRepository: BuscarListaMovimentacaoRepository
+    private readonly buscarListaMovimentacaoRepository: BuscarListaMovimentacaoRepository,
+    private readonly buscarCategoriaPorIdRepository: BuscarCategoriaPorIdRepository
   ) {}
 
   async buscar(idUsuario: string, data: Date): Promise<ResumoCarteira> {
@@ -20,7 +23,6 @@ export class DbBuscarResumoCarteira implements BuscarResumoCarteira {
     if (!usuario) {
       throw new UsuarioNaoExisteError();
     }
-
     const movimentacoes = await this.buscarListaMovimentacaoRepository.buscarMovimentacoes(
       data,
       usuario.id
@@ -34,7 +36,7 @@ export class DbBuscarResumoCarteira implements BuscarResumoCarteira {
           return Number(a.valor);
         }
       })
-      .reduce((a, b) => a + b, 0);
+      .reduce((a, b) => a + b);
 
     return { saldoTotal: sum, movimentacoes };
   }

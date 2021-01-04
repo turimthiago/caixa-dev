@@ -19,9 +19,3 @@ export class DbRegistrarUsuario implements RegistrarUsuario {
     );
   }
 }
-
-//{ email: 'any_email', password: 'hashed_password' }
-//{"email": "any_email", "password": "hashed_password"}
-
-//{ email: 'any_email', password: 'hashed_password' }
-//{"email": "any_email", "password": "hashed_password"}

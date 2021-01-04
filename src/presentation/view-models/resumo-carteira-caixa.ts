@@ -6,7 +6,7 @@ import { CategoriaViewModel } from "./categoria";
 
 interface MovimentacaoViewModel {
   data: Date;
-  id: number;
+  id: string;
   descricao: string;
   valor: number;
   categoria: CategoriaViewModel;
