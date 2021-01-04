@@ -1,12 +1,18 @@
 import { Router } from "express";
-import { DbBuscarResumoCarteira } from "../../data/db/caixa/db-buscar-resumo-carteira";
-import { DbRegistrarMovimentacao } from "../../data/db/caixa/db-registrar-movimentacao";
-import { CategoriaMongoRepository } from "../../infra/categoria-repository/categoria-repository";
-import { MovimentacaoMongoRepository } from "../../infra/movimentacao-caixa-repository/movimentacao-caixa-repository";
-import { UsuarioMongoRepository } from "../../infra/usuario-repository/usuario-repository";
-import { BuscarMovimentacaoDataController } from "../../presentation/controllers/buscar-lista-movimentacao-data";
-import { RegistrarMovimentacaoController } from "../../presentation/controllers/registrar-movimentacao-controller";
-import { Controller } from "../../presentation/protocols/controller";
+import {
+  DbBuscarResumoCarteira,
+  DbRegistrarMovimentacao,
+} from "../../data/usecases";
+import {
+  CategoriaMongoRepository,
+  MovimentacaoMongoRepository,
+  UsuarioMongoRepository,
+} from "../../infra/db/mongodb";
+import {
+  BuscarMovimentacaoDataController,
+  RegistrarMovimentacaoController,
+} from "../../presentation/controllers";
+import { Controller } from "../../presentation/protocols";
 import { autenticationMiddleware } from "../middlewares/aut";
 
 export default (router: Router): void => {

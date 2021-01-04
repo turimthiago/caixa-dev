@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { DdAutenticacao } from "../../data/db/autenticacao/db-autenticacao";
-import { DbRegistrarUsuario } from "../../data/db/usuario/db-registrar-usuario";
-import { BcryptAdapter } from "../../infra/criptografia/bcrypt-adapter";
-import { JwtCrypter } from "../../infra/criptografia/jwt-crypter";
-import { UsuarioMongoRepository } from "../../infra/usuario-repository/usuario-repository";
-import { LoginController } from "../../presentation/controllers/login-controller";
-import { SignUpController } from "../../presentation/controllers/signup-controller";
-import { Controller } from "../../presentation/protocols/controller";
+import { DbRegistrarUsuario, DdAutenticacao } from "../../data/usecases";
+import { BcryptAdapter, JwtCrypter } from "../../infra/criptografia";
+import { UsuarioMongoRepository } from "../../infra/db/mongodb";
+import {
+  LoginController,
+  SignUpController,
+} from "../../presentation/controllers";
+import { Controller } from "../../presentation/protocols";
 import env from "../config/env";
 
 export default (router: Router): void => {

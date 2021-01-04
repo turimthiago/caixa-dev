@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
-import { RegistrarUsuario } from "../../domain/usescases/registrar-usuario";
-import { Controller } from "../protocols/controller";
-import { UsuarioViewModel } from "../view-models/usuario";
-
+import { RegistrarUsuario } from "../../domain/usescases";
+import { Controller } from "../protocols";
+import { UsuarioViewModel } from "../view-models";
 export class SignUpController implements Controller {
   constructor(private readonly registrarUsuario: RegistrarUsuario) {}
 

@@ -1,10 +1,10 @@
-import { Usuario } from "../../../domain/models/usuario";
+import { Usuario } from "../../domain/models/usuario";
 import {
   RegistrarUsuario,
   RegistrarUsuarioModel,
-} from "../../../domain/usescases/registrar-usuario";
-import { RegistrarUsuarioRepository } from "../../protocols";
-import { Hasher } from "../../criptografia/hasher";
+} from "../../domain/usescases/registrar-usuario";
+import { RegistrarUsuarioRepository } from "../protocols";
+import { Hasher } from "../criptografia/hasher";
 
 export class DbRegistrarUsuario implements RegistrarUsuario {
   constructor(

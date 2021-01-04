@@ -1,7 +1,6 @@
 import { Request, response, Response } from "express";
-import { Autenticacao } from "../../domain/usescases/autenticar-usuario";
-import { Controller } from "../protocols/controller";
-
+import { Autenticacao } from "../../domain/usescases";
+import { Controller } from "../protocols";
 export class LoginController implements Controller {
   constructor(private readonly autenticacao: Autenticacao) {}
 

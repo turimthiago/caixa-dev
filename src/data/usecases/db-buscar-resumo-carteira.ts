@@ -1,11 +1,11 @@
-import { UsuarioNaoExisteError } from "../../../domain/errors/usuario-nao-existe-error";
-import { TipoMovimentacao } from "../../../domain/models/tipo-movimentacao";
+import { UsuarioNaoExisteError } from "../../domain/errors/usuario-nao-existe-error";
+import { TipoMovimentacao } from "../../domain/models/tipo-movimentacao";
 import {
   BuscarResumoCarteira,
   ResumoCarteira,
-} from "../../../domain/usescases/buscar-resumo-carteira";
-import { BuscarListaMovimentacaoRepository } from "../../protocols/buscar-lista-movimentacao-repository";
-import { BuscarUsuarioPorIdRepository } from "../../protocols/buscar-usuario-id-repository";
+} from "../../domain/usescases/buscar-resumo-carteira";
+import { BuscarListaMovimentacaoRepository } from "../protocols/buscar-lista-movimentacao-repository";
+import { BuscarUsuarioPorIdRepository } from "../protocols/buscar-usuario-id-repository";
 
 export class DbBuscarResumoCarteira implements BuscarResumoCarteira {
   constructor(

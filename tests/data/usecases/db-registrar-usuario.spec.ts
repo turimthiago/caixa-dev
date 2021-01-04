@@ -1,8 +1,8 @@
-import { Usuario } from "../../../domain/models";
-import { RegistrarUsuarioModel } from "../../../domain/usescases/registrar-usuario";
-import { Hasher } from "../../criptografia/hasher";
-import { RegistrarUsuarioRepository } from "../../protocols";
-import { DbRegistrarUsuario } from "./db-registrar-usuario";
+import { Hasher } from "../../../src/data/criptografia";
+import { RegistrarUsuarioRepository } from "../../../src/data/protocols";
+import { DbRegistrarUsuario } from "../../../src/data/usecases";
+import { Usuario } from "../../../src/domain/models";
+import { RegistrarUsuarioModel } from "../../../src/domain/usescases";
 
 class RegistrarUsuarioReposityStub implements RegistrarUsuarioRepository {
   registrar(registrarUsuario: RegistrarUsuarioModel): Promise<Usuario> {

@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { RegistrarMovimentoCaixa } from "../../domain/usescases/registrar-movimento-caixa";
+import { RegistrarMovimentoCaixa } from "../../domain/usescases";
 import { ParamError } from "../errors/param-error";
 import { DateHelper } from "../helpers/date-helper";
-import { Controller } from "../protocols/controller";
+import { Controller } from "../protocols";
 
 export class RegistrarMovimentacaoController implements Controller {
   constructor(

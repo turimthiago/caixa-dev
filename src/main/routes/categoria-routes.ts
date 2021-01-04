@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { DbRegistrarCategoria } from "../../data/db/categoria/db-registrar-categoria";
-import { CategoriaMongoRepository } from "../../infra/categoria-repository/categoria-repository";
-import { RegistrarCategoriController } from "../../presentation/controllers/registrar-categoria-controller";
-import { Controller } from "../../presentation/protocols/controller";
+import { DbRegistrarCategoria } from "../../data/usecases";
+import { CategoriaMongoRepository } from "../../infra/db/mongodb";
+import { RegistrarCategoriController } from "../../presentation/controllers";
+import { Controller } from "../../presentation/protocols";
 
 export default (router: Router): void => {
   router.post("/categorias", buildRoute(makeRegistrarCategoriaController()));

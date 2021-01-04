@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { RegistrarCategoria } from "../../domain/usescases/registrar-categoria";
-import { Controller } from "../protocols/controller";
+import { RegistrarCategoria } from "../../domain/usescases";
+import { Controller } from "../protocols";
 
 export class RegistrarCategoriController implements Controller {
   constructor(private readonly registrarCategoria: RegistrarCategoria) {}

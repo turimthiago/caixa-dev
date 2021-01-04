@@ -1,5 +1,4 @@
-import { Categoria } from "./categoria";
-import { TipoMovimentacao } from "./tipo-movimentacao";
+import { Categoria, TipoMovimentacao } from ".";
 export interface Movimentacao {
   id: string;
   data: Date;

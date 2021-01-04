@@ -1,15 +1,14 @@
-import { CategoriaNaoExisteError } from "../../../domain/errors/categoria-nao-existe-error";
-import { UsuarioNaoExisteError } from "../../../domain/errors/usuario-nao-existe-error";
-import { TipoDeMovimentacaoInvalidaError } from "../../../domain/errors/tipo-movimentacao-invalida-error";
-import { Movimentacao } from "../../../domain/models";
+import { CategoriaNaoExisteError } from "../../domain/errors/categoria-nao-existe-error";
+import { UsuarioNaoExisteError } from "../../domain/errors/usuario-nao-existe-error";
+import { TipoDeMovimentacaoInvalidaError } from "../../domain/errors/tipo-movimentacao-invalida-error";
+import { Movimentacao, TipoMovimentacao } from "../../domain/models";
 import {
   RegistrarMovimentoCaixa,
   RegistrarMovimentoModel,
-} from "../../../domain/usescases/registrar-movimento-caixa";
-import { BuscarCategoriaPorIdRepository } from "../../protocols/buscar-categoria-repository";
-import { BuscarUsuarioPorIdRepository } from "../../protocols/buscar-usuario-id-repository";
-import { RegistrarMovimentacaoCaixaRepository } from "../../protocols/registrar-movimentacao-caixa-repository";
-import { TipoMovimentacao } from "../../../domain/models/tipo-movimentacao";
+} from "../../domain/usescases/registrar-movimento-caixa";
+import { BuscarCategoriaPorIdRepository } from "../protocols/buscar-categoria-repository";
+import { BuscarUsuarioPorIdRepository } from "../protocols/buscar-usuario-id-repository";
+import { RegistrarMovimentacaoCaixaRepository } from "../protocols/registrar-movimentacao-caixa-repository";
 
 export class DbRegistrarMovimentacao implements RegistrarMovimentoCaixa {
   constructor(

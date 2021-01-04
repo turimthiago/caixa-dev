@@ -1,10 +1,10 @@
-import { ObjectId } from "mongodb";
-import { MovimentacaoEntity } from "../../data/entities/movimentacao-entity";
-import { BuscarListaMovimentacaoRepository } from "../../data/protocols/buscar-lista-movimentacao-repository";
-import { RegistrarMovimentacaoCaixaRepository } from "../../data/protocols/registrar-movimentacao-caixa-repository";
-import { Movimentacao } from "../../domain/models";
-import { RegistrarMovimentoModel } from "../../domain/usescases/registrar-movimento-caixa";
-import { MongoHelper } from "../helpers";
+import { Movimentacao } from "../../../domain/models";
+import { RegistrarMovimentoModel } from "../../../domain/usescases";
+import {
+  BuscarListaMovimentacaoRepository,
+  RegistrarMovimentacaoCaixaRepository,
+} from "../../../data/protocols";
+import { MongoHelper } from "../../helpers";
 
 export class MovimentacaoMongoRepository
   implements

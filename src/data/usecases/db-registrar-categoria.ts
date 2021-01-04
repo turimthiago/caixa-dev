@@ -1,9 +1,9 @@
-import { Categoria } from "../../../domain/models";
+import { Categoria } from "../../domain/models";
 import {
   RegistrarCategoria,
   RegistrarCategoriaModel,
-} from "../../../domain/usescases/registrar-categoria";
-import { RegistrarCategoriRepository } from "../../protocols/registrar-categoria-repository";
+} from "../../domain/usescases/registrar-categoria";
+import { RegistrarCategoriRepository } from "../protocols/registrar-categoria-repository";
 
 export class DbRegistrarCategoria implements RegistrarCategoria {
   constructor(

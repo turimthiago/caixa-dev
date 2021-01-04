@@ -1,9 +1,5 @@
-import { TipoDeMovimentacaoInvalidaError } from "../../domain/errors/tipo-movimentacao-invalida-error";
-import { Movimentacao } from "../../domain/models";
-import { TipoMovimentacao } from "../../domain/models/tipo-movimentacao";
 import { ResumoCarteira } from "../../domain/usescases/buscar-resumo-carteira";
 import { CategoriaViewModel } from "./categoria";
-
 interface MovimentacaoViewModel {
   data: Date;
   id: string;

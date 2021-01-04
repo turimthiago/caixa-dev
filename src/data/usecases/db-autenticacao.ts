@@ -1,10 +1,10 @@
 import {
   Autenticacao,
   AutenticacaoModel,
-} from "../../../domain/usescases/autenticar-usuario";
-import { Crypter } from "../../criptografia/crypter";
-import { Hasher } from "../../criptografia/hasher";
-import { BuscarUsuarioPorEmailRepository } from "../../protocols/buscar-usuario-email-repository";
+} from "../../domain/usescases/autenticar-usuario";
+import { Crypter } from "../criptografia/crypter";
+import { Hasher } from "../criptografia/hasher";
+import { BuscarUsuarioPorEmailRepository } from "../protocols/buscar-usuario-email-repository";
 
 export class DdAutenticacao implements Autenticacao {
   constructor(
