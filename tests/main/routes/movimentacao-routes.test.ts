@@ -106,4 +106,12 @@ describe("Rotas Movimentação Carteira", () => {
       .set("x-access-token", accessToken)
       .expect(200);
   });
+
+  test("Deve retornar 500 se data não informada ao buscar resumo", async () => {
+    const { accessToken } = await mockAccessToken();
+    await request(app)
+      .get("/api/movimentacoes/")
+      .set("x-access-token", accessToken)
+      .expect(500);
+  });
 });
