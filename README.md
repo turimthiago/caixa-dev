@@ -53,11 +53,11 @@ $ yarn up
 ```
 
 ## :twisted_rightwards_arrows: Rotas
-* # /api/signup
+* ## /api/signup
   * POST
   * Criação de usuário na API
 
-* # /api/login
+* ## /api/login
   * POST
   * Autenticação do usuário e emissão de token de acesso
 
