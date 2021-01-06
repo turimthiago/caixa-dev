@@ -52,6 +52,15 @@ $ yarn up
 
 ```
 
+## :twisted_rightwards_arrows: Rotas
+* # /api/signup
+  * POST
+  * Criação de usuário na API
+
+* # /api/login
+  * POST
+  * Autenticação do usuário e emissão de token de acesso
+
 ## :memo: Licença ##
 
 Este projeto está sob licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
