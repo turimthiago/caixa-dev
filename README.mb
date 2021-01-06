@@ -1,6 +1,6 @@
 #  :bulb: PhoneUpInstaller - API
 
-Projeto de API para registro de Caixa **CaixaDev**.
+Projeto de API para aplicativo **PhoneUpInstaller**.
 
 #  :computer: Instalação
 Com [NodeJs](https://nodejs.org/en/) e [Yarn](https://yarnpkg.com/) previamente instalado:
@@ -11,17 +11,20 @@ yarn dev
 
 # :wrench:Tecnologias
 :heavy_check_mark: [NodeJs](https://nodejs.org/en/);
-:heavy_check_mark:[MongoDB](https://www.mongodb.com/);
+:heavy_check_mark:[Postgres](https://www.postgresql.org/);
+:heavy_check_mark:[Sequelize](https://sequelize.org/);
 :heavy_check_mark:[Jest](https://jestjs.io/);
  
+
 #  :zap:Execução
   
  **Docker**
 ```bash
-yarn up
+cd phone-up-installer-api
+docker-compose up
 ```
 **Node**
 ```bash
 yarn install
-yarn start:prod
+yarn dev
 ```
