@@ -38,13 +38,13 @@ O que esperamos e iremos avaliar:
 - Boas práticas de código (clean code) OK
 - Domínio da linguagem Ok 
 - Estrutura, organização, legibilidade e manutenibilidade do código Ok
-- Documentação de como “rodar” seu projeto
+- Documentação de como “rodar” seu projeto OK
 
 Seria legal se você conseguisse:
 - Testes automatizados OK
 - Documentação de uso da sua API
 - Alguma forma de autenticação para que o dono de um caixa não veja o caixa do outro. OK
-- Docker (com docker-compose talvez?)
+- Docker (com docker-compose talvez?) OK
 - Subir o projeto em alguma infra (now.sh, heroku, aws etc...)
 
 Sinta-se à vontade para definir qual framework, libs ou database irá utilizar e coloque abaixo o link do resultado final em um repositorio (github, gitlab ou bitbucket).
@@ -55,4 +55,4 @@ ATENÇÃO: Só clique em finalizar o teste após colocar o link do seu projeto a
 X Criação de Usuário;
 X Autenticação com token de acesso;
 X Cadastro de Categorias;
-- Registro de Movimentação de Caixa;
+X Registro de Movimentação de Caixa;
