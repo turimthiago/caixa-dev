@@ -1,36 +1,4 @@
-<div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="{{app_name}}" />
-
-  &#xa0;
-
-  <!-- <a href="https://{{app_url}}.netlify.com">Demo</a> -->
-</div>
-
-<h1 align="center">{{app_name}}</h1>
-
-<p align="center">
-  <img alt="Principal linguagem do projeto" src="https://img.shields.io/github/languages/top/{{github}}/{{repository}}?color=56BEB8">
-
-  <img alt="Quantidade de linguagens utilizadas" src="https://img.shields.io/github/languages/count/{{github}}/{{repository}}?color=56BEB8">
-
-  <img alt="Tamanho do repositório" src="https://img.shields.io/github/repo-size/{{github}}/{{repository}}?color=56BEB8">
-
-  <img alt="Licença" src="https://img.shields.io/github/license/{{github}}/{{repository}}?color=56BEB8">
-
-  <!-- <img alt="Github issues" src="https://img.shields.io/github/issues/{{github}}/{{repository}}?color=56BEB8" /> -->
-
-  <!-- <img alt="Github forks" src="https://img.shields.io/github/forks/{{github}}/{{repository}}?color=56BEB8" /> -->
-
-  <!-- <img alt="Github stars" src="https://img.shields.io/github/stars/{{github}}/{{repository}}?color=56BEB8" /> -->
-</p>
-
-<!-- Status -->
-
-<!-- <h4 align="center"> 
-	🚧  {{app_name}} 🚀 Em construção...  🚧
-</h4> 
-
-<hr> -->
+<h1 align="center">CaixaDev</h1>
 
 <p align="center">
   <a href="#dart-sobre">Sobre</a> &#xa0; | &#xa0; 
@@ -46,30 +14,30 @@
 
 ## :dart: Sobre ##
 
-Sobre o seu projeto
+API para registro de fluxo de caixa (entrada/saída).
 
 ## :sparkles: Funcionalidades ##
 
-:heavy_check_mark: Funcionalidade 1;\
-:heavy_check_mark: Funcionalidade 2;\
-:heavy_check_mark: Funcionalidade 3;
+:heavy_check_mark: Registro de caixa por usuário;\
+:heavy_check_mark: Registro de movimentação de caixa;\
+:heavy_check_mark: Resumo do caixo por data;
 
 ## :rocket: Tecnologias ##
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
-- [Expo](https://expo.io/)
 - [Node.js](https://nodejs.org/en/)
-- [React](https://pt-br.reactjs.org/)
-- [React Native](https://reactnative.dev/)
+- [MongoDB](https://www.mongodb.com/)
+- [Express](https://expressjs.com/)
 - [TypeScript](https://www.typescriptlang.org/)
 
 ## :white_check_mark: Pré requisitos ##
 
 Antes de começar :checkered_flag:, você precisa ter o [Git](https://git-scm.com) e o [Node](https://nodejs.org/en/) instalados em sua maquina.
 
-## :checkered_flag: Começando ##
+Somente o [Docker](https://www.docker.com/) também é suficiente.
 
+## :checkered_flag: Começando ##
 ```bash
 # Clone este repositório
 $ git clone https://github.com/{{github}}/{{repository}}
@@ -81,9 +49,15 @@ $ cd {{repository}}
 $ yarn
 
 # Para iniciar o projeto
-$ yarn start
+$ yarn start:prod
 
-# O app vai inicializar em <http://localhost:3000>
+# O app vai inicializar em <http://localhost:5050>
+
+```
+Com o [Docker]
+```bash
+$ yarn up
+# O app vai inicializar em <http://localhost:5050>
 ```
 
 ## :memo: Licença ##
@@ -91,7 +65,7 @@ $ yarn start
 Este projeto está sob licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
 
 
-Feito com :heart: por <a href="https://github.com/{{github}}" target="_blank">{{author}}</a>
+Feito com :heart: por <a href="https://github.com/turimthiago" target="_blank">Thigo Turim Carvalho</a>
 
 &#xa0;
 
