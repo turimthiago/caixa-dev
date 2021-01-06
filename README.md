@@ -55,7 +55,7 @@ Documentação da API publicada em <a href="https://documenter.getpostman.com/vi
 
 ## :memo: Licença ##
 
-Este projeto está sob licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
+Este projeto está sob licença MIT.
 
 
 Feito por <a href="https://github.com/turimthiago" target="_blank">Thigo Turim Carvalho</a>
