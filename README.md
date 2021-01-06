@@ -43,9 +43,6 @@ $ git clone https://github.com/turimthiago/caixa-dev.git
 # Entre na pasta
 $ cd caixa-dev
 
-# Instale as dependências
-$ yarn
-
 # Para iniciar o projeto
 $ yarn up
 
@@ -53,14 +50,8 @@ $ yarn up
 
 ```
 
-## :twisted_rightwards_arrows: Rotas
-* ## /api/signup
-  * POST
-  * Criação de usuário na API
-
-* ## /api/login
-  * POST
-  * Autenticação do usuário e emissão de token de acesso
+## :twisted_rightwards_arrows: Documentação API
+Documentação da API publicada em <a href="https://documenter.getpostman.com/view/14093677/TVzNHKKh" target="_blank">CaixaDev -API</a>
 
 ## :memo: Licença ##
 
