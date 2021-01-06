@@ -32,32 +32,24 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [TypeScript](https://www.typescriptlang.org/)
 
 ## :white_check_mark: Pré requisitos ##
-
-Antes de começar :checkered_flag:, você precisa ter o [Git](https://git-scm.com) e o [Node](https://nodejs.org/en/) instalados em sua maquina.
-
-Somente o [Docker](https://www.docker.com/) também é suficiente.
+Antes de começar :checkered_flag:, você precisa ter o [Git](https://git-scm.com) e o [Docker](https://www.docker.com/) instalados em sua maquina.
 
 ## :checkered_flag: Começando ##
 ```bash
 # Clone este repositório
-$ git clone https://github.com/{{github}}/{{repository}}
+$ git clone https://github.com/turimthiago/caixa-dev.git
 
 # Entre na pasta
-$ cd {{repository}}
+$ cd caixa-dev
 
 # Instale as dependências
 $ yarn
 
 # Para iniciar o projeto
-$ yarn start:prod
-
-# O app vai inicializar em <http://localhost:5050>
-
-```
-Com o [Docker]
-```bash
 $ yarn up
+
 # O app vai inicializar em <http://localhost:5050>
+
 ```
 
 ## :memo: Licença ##
@@ -65,7 +57,7 @@ $ yarn up
 Este projeto está sob licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
 
 
-Feito com :heart: por <a href="https://github.com/turimthiago" target="_blank">Thigo Turim Carvalho</a>
+Feito por <a href="https://github.com/turimthiago" target="_blank">Thigo Turim Carvalho</a>
 
 &#xa0;
 
