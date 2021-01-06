@@ -46,7 +46,7 @@ $ cd caixa-dev
 # Para iniciar o projeto
 $ yarn up
 
-# O app vai inicializar em <http://localhost:5050>
+# O app vai inicializar em <http://localhost:5050/api>
 
 ```
 
