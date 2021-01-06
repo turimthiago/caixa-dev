@@ -13,7 +13,7 @@ services:
     image: node:12
     working_dir: /usr/src/caixa-dev-api
     restart: always
-    command: bash -c "npm install --only=prod && npm run start:prod"
+    command: bash -c "npm install --only=prod && npm run start"
     environment:
       - MONGO_URL=mongodb://mongo:27017/caixa-dev-api
     volumes:
