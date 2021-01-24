@@ -5,15 +5,12 @@ import {
 import { DbBuscarResumoCarteira } from "../../../src/data/usecases";
 import { UsuarioNaoExisteError } from "../../../src/domain/errors";
 import { Movimentacao, Usuario } from "../../../src/domain/models";
+import { UsuarioBuilder } from "../../data-builders/usuario-builder";
 import { fakeMovimentacoes } from "./fake-movimentacoes";
 
 class BuscarUsuarioPorIdRepositoryStub implements BuscarUsuarioPorIdRepository {
   buscarPorId(id: string): Promise<Usuario> {
-    return Promise.resolve({
-      id: "any_id",
-      email: "any_email",
-      password: "any_password",
-    });
+    return Promise.resolve(UsuarioBuilder.usuario().build());
   }
 }
 

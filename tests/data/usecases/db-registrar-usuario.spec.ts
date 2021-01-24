@@ -3,13 +3,16 @@ import { RegistrarUsuarioRepository } from "../../../src/data/protocols";
 import { DbRegistrarUsuario } from "../../../src/data/usecases";
 import { Usuario } from "../../../src/domain/models";
 import { RegistrarUsuarioModel } from "../../../src/domain/usescases";
+import { UsuarioBuilder } from "../../data-builders/usuario-builder";
 class RegistrarUsuarioReposityStub implements RegistrarUsuarioRepository {
   registrar(registrarUsuario: RegistrarUsuarioModel): Promise<Usuario> {
-    return Promise.resolve({
-      id: "valid_id",
-      email: "valid_email@email.com",
-      password: "valid_hashed_password",
-    });
+    return Promise.resolve(
+      UsuarioBuilder.usuario()
+        .comId()
+        .emailValido()
+        .senhaValidaCriptografada()
+        .build()
+    );
   }
 }
 class HahserStub implements Hasher {
@@ -28,12 +31,13 @@ describe("DbRegistrarUsuario", () => {
     const registrarSpy = jest.spyOn(repository, "registrar");
     const sut = new DbRegistrarUsuario(repository, hahserStub);
 
-    await sut.registrar({ email: "any_email", password: "any_password" });
+    const usuario = UsuarioBuilder.usuario().semId().build();
 
-    expect(registrarSpy).toHaveBeenCalledWith({
-      email: "any_email",
-      password: "hashed_password",
-    });
+    await sut.registrar(usuario);
+
+    expect(registrarSpy).toHaveBeenCalledWith(
+      UsuarioBuilder.usuario().semId().comSenhaCriptografada().build()
+    );
   });
 
   test("Deve retornar um usuário registrado com sucesso", async () => {
@@ -41,19 +45,16 @@ describe("DbRegistrarUsuario", () => {
     const hahserStub = new HahserStub();
     const sut = new DbRegistrarUsuario(repository, hahserStub);
 
-    const fakeUsuarioData = {
-      email: "valid_email@email.com",
-      password: "valid_password",
-    };
+    const usuario = await sut.registrar(
+      UsuarioBuilder.usuario().semId().emailValido().senhaValida().build()
+    );
 
-    const fakeUsuario = {
-      id: "valid_id",
-      email: "valid_email@email.com",
-      password: "valid_hashed_password",
-    };
-
-    const usuario = await sut.registrar(fakeUsuarioData);
-
-    expect(usuario).toEqual(fakeUsuario);
+    expect(usuario).toEqual(
+      UsuarioBuilder.usuario()
+        .comId()
+        .emailValido()
+        .senhaValidaCriptografada()
+        .build()
+    );
   });
 });

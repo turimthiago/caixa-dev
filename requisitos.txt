@@ -45,7 +45,7 @@ Seria legal se você conseguisse:
 - Documentação de uso da sua API
 - Alguma forma de autenticação para que o dono de um caixa não veja o caixa do outro. OK
 - Docker (com docker-compose talvez?) OK
-- Subir o projeto em alguma infra (now.sh, heroku, aws etc...)
+- Subir o projeto em alguma infra (now.sh, heroku, aws etc...) OK
 
 Sinta-se à vontade para definir qual framework, libs ou database irá utilizar e coloque abaixo o link do resultado final em um repositorio (github, gitlab ou bitbucket).
 
